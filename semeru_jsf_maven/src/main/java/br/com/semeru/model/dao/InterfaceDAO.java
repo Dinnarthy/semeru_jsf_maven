@@ -19,5 +19,4 @@ public interface InterfaceDAO<T> {
     List<T> getListByDetachedCriteria(DetachedCriteria detachedCriteria);
     
     
-    
 }
