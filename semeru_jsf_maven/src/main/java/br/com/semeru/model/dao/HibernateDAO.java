@@ -3,50 +3,71 @@ package br.com.semeru.model.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 
 
 public class HibernateDAO<T> implements InterfaceDAO<T>, Serializable{
+    
+    private static final long serialVersionUID = 1L;
+    
+    private Class<T> classe;
+    private Session session;
+
+    public HibernateDAO(Class<T> classe, Session session) {
+        super();
+        this.classe = classe;
+        this.session = session;
+    }
+    
+    
+    
 
     @Override
     public void save(T entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.save(entity);
     }
 
     @Override
     public void update(T entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.update(entity);
     }
 
     @Override
     public void delete(T entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.delete(entity);
+        
     }
 
     @Override
     public void merge(T entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.merge(entity);
     }
 
     @Override
     public T getEntity(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        T entity = (T)session.get(classe, id);
+        return entity;
     }
 
     @Override
-    public T getEntityByDetachedCriteria(DetachedCriteria detachedCriteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T getEntityByDetachedCriteria(DetachedCriteria criteria) {
+        T entity = (T)criteria.getExecutableCriteria(session).uniqueResult();
+        return entity;
+    }
+    
+    @Override
+    public List<T> getListByDetachedCriteria(DetachedCriteria criteria) {
+        return criteria.getExecutableCriteria(session).list();
     }
 
     @Override
     public List<T> getEntities() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<T> entity = (List <T>) session.createCriteria(classe).list();
+        return entity;
     }
 
-    @Override
-    public List<T> getListByDetachedCriteria(DetachedCriteria detachedCriteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     
 }
