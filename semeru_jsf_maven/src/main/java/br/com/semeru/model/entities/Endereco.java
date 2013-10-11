@@ -46,7 +46,7 @@ public class Endereco implements Serializable{
                                                                     //o que eu tow pedindo
     
     @ManyToOne(optional=false,fetch=FetchType.LAZY)
-    @ForeignKey(name="PessoaTipoLogradouro")
+    @ForeignKey(name="EnderecoTipoLogradouro")
     @JoinColumn(name="idTipoLogradouro",referencedColumnName="idTipoLogradouro")
     private TipoLogradouro tipoLogradouro;
     
@@ -66,6 +66,12 @@ public class Endereco implements Serializable{
     private Cidade cidade;
 
     public Endereco() {
+        
+        this.cidade= new Cidade();
+        this.estado= new Estado();
+        this.tipoEndereco= new TipoEndereco();
+        this.tipoLogradouro= new TipoLogradouro();
+        this.pessoa= new Pessoa();
     }
 
     public Integer getIdEndereco() {
