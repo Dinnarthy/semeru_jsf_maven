@@ -25,8 +25,8 @@
         
         <property name="c3p0.min_size">1</property> <!-- NUMERO MINIMO DE CONEXOES-->
         <property name="c3p0.max_size">20</property> <!-- NUMERO MAXIMO DE CONEXOES-->
-        <property name="c3p0.timeout">300</property> <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
-        <property name="c3p0.max_statements">80</property> <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
+        <property name="c3p0.timeout">300</property> <!-- DE 5 EM 5 MINUTOS ELE FECHA A SESSAO-->
+        <property name="c3p0.max_statements">80</property> <!-- NO MAXIMO 80 STATEMENTS POR CONEXAO-->
         <property name="c3p0.idle_test_period">300</property> <!-- CONFIGURAÇÕES DO POOL DE CONEXÕES-->
         
         <!-- LISTA DE ENTIDADES -->
